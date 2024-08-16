@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ร้านขายหนังสือออนไลน์</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #005CAF;
+            color: white;
+            padding: 1em 0;
+            text-align: center;
+        }
+        .button-link {
+            display: inline-block;
+            padding: 0.5em 1em;
+            background-color: #005CAF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .button-link:hover {
+            background-color: #004a9b;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            background-color: #444;
+            padding: 0.5em;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5em 1em;
+        }
+
+        .nav a:hover, .nav a.active {
+            background-color: #555;
+        }
+
+        .search-bar {
+            margin: 1em auto;
+            text-align: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 0.5em;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-bar button {
+            padding: 0.5em;
+            background-color: #005CAF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .cart {
+            text-align: right;
+            padding: 0.5em;
+            cursor: pointer;
+        }
+
+        .content {
+            display: none;
+            padding: 1em;
+        }
+
+        .product {
+            background-color: white;
+            padding: 1em;
+            margin: 1em;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: calc(33% - 2em);
+            box-sizing: border-box;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .product img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .product h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+
+        .product p {
+            margin: 0.5em 0;
+        }
+
+        .product .price {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        .product .original-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .product button {
+            padding: 0.5em;
+            background-color: #005CAF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .product button:hover {
+            background-color: #004a9b;
+        }
+
+        .cart-item, .bill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .cart-item img, .bill-item img {
+            width: 80px;
+            height: auto;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            margin-top: 1em;
+        }
+
+        @media (max-width: 768px) {
+            .product {
+                width: calc(50% - 2em);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product {
+                width: calc(100% - 2em);
+            }
+
+            .nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav a {
+                margin: 0.5em 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>อักษรสวรรค์</h1>
+</header>
+
+<nav class="nav">
+    <a href="#" onclick="showContent('menu')" class="nav-link">หนังสือทั้งหมด</a>
+    <a href="#" onclick="showContent('shopping')" class="nav-link">เลือกซื้อหนังสือ</a>
+    <a href="#" onclick="showContent('cart')" class="nav-link">ตะกร้าหนังสือ</a>
+    <a href="#" onclick="showContent('bill')" class="nav-link">บิลสรุปค่าบริการ</a>
+</nav>
+<div class="search-bar">
+    <input type="text" id="search-input" placeholder="ค้นหาหนังสือ...">
+    <button onclick="searchBooks()">ค้นหาหนังสือ...</button>
+</div>
+
+<div id="menu" class="content">
+    <div class="product" id="book1">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202407/616264/1000273246_front_XXL.jpg?imgname=%E0%B8%84%E0%B8%94%E0%B8%B5%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B8%A8%E0%B8%99%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%A2%E0%B8%99%E0%B9%8C%E0%B8%95%E0%B8%B2%E0%B8%AA%E0%B8%B7%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%93" alt="คดีปริศนากับนัยน์ตาสืบวิญญาณ">
+        <h3>คดีปริศนากับนัยน์ตาสืบวิญญาณ</h3>
+        <p>200 บาท</p>
+        <a href="win4.html" class="button-link">ดูรายละเอียด</a>
+    </div>
+
+    <div class="product" id="book2">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202407/617638/1000273582_front_XXL.jpg?imgname=%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%9D%E0%B8%99%E0%B8%A4%E0%B8%94%E0%B8%B9%E0%B8%9D%E0%B8%B1%E0%B8%99" alt="หนังสือ2">
+        <h3>ฟ้าฝนฤดูฝัน</h3>
+        <p>300 บาท</p>
+        <a href="win5.html" class="button-link">ดูรายละเอียด</a>
+    </div>
+
+    <div class="product" id="book3">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202405/613832/1000272432_front_XXL.jpg?imgname=The-Cat-Who-Taught-Zen-%E0%B9%81%E0%B8%A1%E0%B8%A7%E0%B8%AA%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%8B%E0%B8%99" alt="หนังสือ3">
+        <h3>แมวสองเซน</h3>
+        <p>250 บาท</p>
+        <a href="win3.html" class="button-link">ดูรายละเอียด</a>
+    </div>
+
+    <div class="product" id="book4">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202405/611992/1000272010_front_XXL.jpg?imgname=%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95-70-%E0%B8%84%E0%B8%B0%E0%B9%81%E0%B8%99%E0%B8%99%E0%B8%81%E0%B9%8D%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%84%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7" alt="หนังสือ4">
+        <h3>ชีวิต 70 คะแนน</h3>
+        <p>280 บาท</p>
+        <a href="win2.html" class="button-link">ดูรายละเอียด</a>
+    </div>
+</div>
+
+<div id="shopping" class="content">
+    <div class="product">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202407/616264/1000273246_front_XXL.jpg?imgname=%E0%B8%84%E0%B8%94%E0%B8%B5%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B8%A8%E0%B8%99%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%A2%E0%B8%99%E0%B9%8C%E0%B8%95%E0%B8%B2%E0%B8%AA%E0%B8%B7%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%93" alt="หนังสือ 1">
+        <h3>คดีปริศนากับนัยน์ตาสืบวิญญาณ</h3>
+        <p>200 บาท</p>
+        <button onclick="addToCart('คดีปริศนากับนัยน์ตาสืบวิญญาณ', 200, 'https:storage.naiin.com/system/application/bookstore/resource/product/202407/616264/1000273246_front_XXL.jpg?imgname=%E0%B8%84%E0%B8%94%E0%B8%B5%E0%B8%9B%E0%B8%A3%E0%B8%B4%E0%B8%A8%E0%B8%99%E0%B8%B2%E0%B8%81%E0%B8%B1%E0%B8%9A%E0%B8%99%E0%B8%B1%E0%B8%A2%E0%B8%99%E0%B9%8C%E0%B8%95%E0%B8%B2%E0%B8%AA%E0%B8%B7%E0%B8%9A%E0%B8%A7%E0%B8%B4%E0%B8%8D%E0%B8%8D%E0%B8%B2%E0%B8%93')">เพิ่มในตะกร้า</button>
+        
+    </div>
+    <div class="product">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202407/617638/1000273582_front_XXL.jpg?imgname=%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%9D%E0%B8%99%E0%B8%A4%E0%B8%94%E0%B8%B9%E0%B8%9D%E0%B8%B1%E0%B8%99" alt="หนังสือ 2">
+        <h3>ฟ้าฝนฤดูฝัน</h3>
+        <p>300 บาท</p>
+        <button onclick="addToCart('ฟ้าฝนฤดูฝัน', 300, 'https:storage.naiin.com/system/application/bookstore/resource/product/202407/617638/1000273582_front_XXL.jpg?imgname=%E0%B8%9F%E0%B9%89%E0%B8%B2%E0%B8%9D%E0%B8%99%E0%B8%A4%E0%B8%94%E0%B8%B9%E0%B8%9D%E0%B8%B1%E0%B8%99')">เพิ่มในตะกร้า</button>
+    </div>
+    <div class="product">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202405/613832/1000272432_front_XXL.jpg?imgname=The-Cat-Who-Taught-Zen-%E0%B9%81%E0%B8%A1%E0%B8%A7%E0%B8%AA%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%8B%E0%B8%99" alt="หนังสือ 3">
+        <h3>แมวสองเซน</h3>
+        <p>250 บาท</p>
+        <button onclick="addToCart('แมวสองเซน', 250, 'https:storage.naiin.com/system/application/bookstore/resource/product/202405/613832/1000272432_front_XXL.jpg?imgname=The-Cat-Who-Taught-Zen-%E0%B9%81%E0%B8%A1%E0%B8%A7%E0%B8%AA%E0%B8%AD%E0%B8%99%E0%B9%80%E0%B8%8B%E0%B8%99')">เพิ่มในตะกร้า</button>
+    </div>
+    <div class="product">
+        <img src="https://storage.naiin.com/system/application/bookstore/resource/product/202405/611992/1000272010_front_XXL.jpg?imgname=%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95-70-%E0%B8%84%E0%B8%B0%E0%B9%81%E0%B8%99%E0%B8%99%E0%B8%81%E0%B9%87%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%84%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7" alt="หนังสือ 4">
+        <h3>ชีวิต 70 คะแนน</h3>
+        <p>280 บาท</p>
+        <button onclick="addToCart('280 บาท', 280, 'https:storage.naiin.com/system/application/bookstore/resource/product/202405/611992/1000272010_front_XXL.jpg?imgname=%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95-70-%E0%B8%84%E0%B8%B0%E0%B9%81%E0%B8%99%E0%B8%99%E0%B8%81%E0%B9%87%E0%B9%82%E0%B8%AD%E0%B9%80%E0%B8%84%E0%B9%81%E0%B8%A5%E0%B9%89%E0%B8%A7')">เพิ่มในตะกร้า</button>
+    </div>
+</div>
+<main>
+    <section id="cart" class="content">
+        <h2>ตะกร้าหนังสือ</h2>
+        <div id="cart-items"></div>
+        <p id="total-amount">รวม: 0 บาท</p>
+        <button onclick="checkout()">สั่งซื้อ</button>
+    </section>
+
+    <section id="bill" class="content">
+        <h2>บิลสรุปค่าบริการ</h2>
+        <div id="bill-summary"></div>
+    </section>
+</main>
+
+<footer>
+    <p>อักษรสวรรค์ &copy; 2024</p>
+</footer>
+<script>
+    
+    function searchBooks() {
+    var input = document.getElementById('search-input').value.toLowerCase();
+    console.log('Search Input:', input); // ตรวจสอบค่าที่ใช้ในการค้นหา
+    var products = document.querySelectorAll('.product');
+    
+    products.forEach(function(product) {
+        var title = product.querySelector('h3').textContent.toLowerCase();
+        console.log('Product Title:', title); // ตรวจสอบชื่อผลิตภัณฑ์
+        if (title.includes(input)) {
+            product.style.display = 'inline-block'; // แสดงผลิตภัณฑ์ที่ตรงกับการค้นหา
+        } else {
+            product.style.display = 'none'; // ซ่อนผลิตภัณฑ์ที่ไม่ตรงกับการค้นหา
+        }
+    });
+}
+
+
+    function showContent(id) {
+        var contents = document.querySelectorAll('.content');
+        contents.forEach(function(content) {
+            content.style.display = 'none';
+        });
+        
+        var contentToShow = document.getElementById(id);
+        if (contentToShow) {
+            contentToShow.style.display = 'block';
+        }
+
+        var navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(function(link) {
+            link.classList.remove('active');
+        });
+        document.querySelector('[onclick="showContent(\'' + id + '\')"]').classList.add('active');
+    }
+
+  
+    var cart = [];
+    function addToCart(name, price, imgSrc) {
+     
+        var found = cart.find(item => item.name === name);
+        if (found) {
+            found.quantity += 1;
+        } else {
+            cart.push({ name: name, price: price, imgSrc: imgSrc, quantity: 1 });
+        }
+        updateCart();
+    }
+
+    function updateCart() {
+        var cartItemsDiv = document.getElementById('cart-items');
+        var totalAmount = 0;
+        cartItemsDiv.innerHTML = '';
+        
+        cart.forEach(function(item) {
+            totalAmount += item.price * item.quantity;
+            var itemDiv = document.createElement('div');
+            itemDiv.className = 'cart-item';
+            itemDiv.innerHTML = '<img src="' + item.imgSrc + '" alt="' + item.name + '"><div>' + item.name + '<br>ราคา: ' + item.price + ' บาท x ' + item.quantity + '</div><button onclick="removeFromCart(\'' + item.name + '\')">ลบ</button>';
+            cartItemsDiv.appendChild(itemDiv);
+        });
+        
+        document.getElementById('total-amount').textContent = 'รวม: ' + totalAmount + ' บาท';
+    }
+
+    function removeFromCart(name) {
+        cart = cart.filter(item => item.name !== name);
+        updateCart();
+    }
+
+    function checkout() {
+        var billSummaryDiv = document.getElementById('bill-summary');
+        var totalAmount = 0;
+        billSummaryDiv.innerHTML = '';
+        
+        cart.forEach(function(item) {
+            totalAmount += item.price * item.quantity;
+            var itemDiv = document.createElement('div');
+            itemDiv.className = 'bill-item';
+            itemDiv.innerHTML = '<img src="' + item.imgSrc + '" alt="' + item.name + '"><div>' + item.name + '<br>ราคา: ' + item.price + ' บาท x ' + item.quantity + '</div>';
+            billSummaryDiv.appendChild(itemDiv);
+        });
+        
+        var totalDiv = document.createElement('div');
+        totalDiv.textContent = 'รวมทั้งสิ้น: ' + totalAmount + ' บาท';
+        billSummaryDiv.appendChild(totalDiv);
+        
+        cart = [];
+        updateCart();
+        showContent('bill');
+    
+
+    }
+</script>
+
+
+</body>
+</html>
+
+
