@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จองห้องพัก</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #ecf0f1;
+            --text-color: #34495e;
+            --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .input-group i {
+            padding: 12px;
+            background-color: #f8f9fa;
+            color: var(--text-color);
+        }
+
+        .form-group input[type="date"],
+        .form-group input[type="number"],
+        .form-group input[type="time"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input[type="date"]:focus,
+        .form-group input[type="number"]:focus,
+        .form-group input[type="time"]:focus {
+            outline: none;
+        }
+
+        .input-group:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group button {
+            width: 100%;
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>จองห้องพัก</h1>
+        <form action="/search" method="GET">
+            <div class="form-group">
+                <label for="checkin-date">วันที่เข้าพัก (Check-in):</label>
+                <div class="input-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" id="checkin-date" name="checkin-date" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="checkin-time">เวลาเช็คอิน:</label>
+                <div class="input-group">
+                    <i class="fas fa-clock"></i>
+                    <input type="time" id="checkin-time" name="checkin-time" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="checkout-date">วันที่ออก (Check-out):</label>
+                <div class="input-group">
+                    <i class="fas fa-calendar"></i>
+                    <input type="date" id="checkout-date" name="checkout-date" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="checkout-time">เวลาเช็คเอาท์:</label>
+                <div class="input-group">
+                    <i class="fas fa-clock"></i>
+                    <input type="time" id="checkout-time" name="checkout-time" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="guests">จำนวนผู้เข้าพัก:</label>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="number" id="guests" name="guests" min="1" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit">ค้นหาห้องพัก</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
