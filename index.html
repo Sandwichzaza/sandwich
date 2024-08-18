@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>CSS Grid Cards</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        position: relative;
+        width: 80%;
+        overflow: hidden;
+      }
+
+      .grid {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .card {
+        flex: 0 0 30%;
+        background-color: white;
+        margin: 0 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .card__content {
+        padding: 15px;
+      }
+
+      .card__header {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      .card__text {
+        font-size: 14px;
+        color: #555;
+      }
+
+      .card__btn {
+        display: block;
+        margin-top: 10px;
+        padding: 10px;
+        text-align: center;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      }
+
+      .prev,
+      .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(219, 146, 146, 0.701); /* เพิ่มความเข้มของพื้นหลัง */
+        color: white;
+        border: none;
+        padding: 15px;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 100; 
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* เพิ่มเงาเพื่อให้ดูนูนขึ้น */
+        transition: transform 0.3s ease, background-color 0.3s ease; /* เพิ่มเอฟเฟกต์การเปลี่ยน */
+        font-size: 15px; /* ขยายขนาดข้อความ */
+      }
+
+      .prev:hover,
+      .next:hover {
+        background-color: rgba(202, 202, 202, 0.9); /* เปลี่ยนสีพื้นหลังเมื่อ hover */
+        transform: translateY(-50%) scale(1.1); /* ขยายขนาดเล็กน้อยเมื่อ hover */
+      }
+
+      .prev:active,
+      .next:active {
+        transform: translateY(-50%) scale(0.95); /* เอฟเฟกต์ย่อเมื่อกดปุ่ม */
+      }
+
+
+      .prev {
+        left: 10px;
+      }
+
+      .next {
+        right: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <button class="prev" onclick="prevSlide()">&#10094;</button>
+      <div class="grid">
+        <div class="card">
+          <img src="./รูป/dbee0c15cffb4dbc9207c0ec66584aa1.jpg" alt="Snowy Mountains" />
+          <div class="card__content">
+            <h1 class="card__header">
+              หาดเจ้าสำราญ</h1>
+            <p class="card__text">
+            </p>เวลาทำการ : ตลอดเวลา<p> ที่อยู่ : ตำบลหาดเจ้าสำราญ อำเภอเมืองเพชรบุรี จังหวัดเพชรบุรี </p><strong>ระยะทาง 0 กิโลเมตร</strong></p><a href="https://maps.app.goo.gl/radw5gRi7Lp7k5JN8">Google Map </a> </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./รูป/ktc-cha-am-3.webp" alt="Desert" />
+          <div class="card__content">
+            <h1 class="card__header">หาดชะอำ</h1>
+            <p class="card__text">
+            </p>เวลาทำการ : ตลอดเวลา<p> ที่อยู่ : ตำบลชะอำ อำเภอชะอำ จังหวัดเพชรบุรี </p><strong>ระยะทาง 25 กิโลเมตร</strong></p><a href="https://maps.app.goo.gl/dW5twv3ZWBQKbLux6">Google Map </a> </strong>
+
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./รูป/ktc-cha-am-4.webp" alt="Desert" />
+          <div class="card__content">
+            <h1 class="card__header">เขื่อนแก่งกระจาน</h1>
+            <p class="card__text">
+            </p>เวลาทำการ :06.00 -18.00 น.<p>ที่อยู่ : ตำบลแก่งกระจาน อำเภอแก่งกระจาน จังหวัดเพชรบุรี </p><strong>ระยะทาง 40 กิโลเมตร</strong></p><a href="https://maps.app.goo.gl/2c8diXuerwpztoo67">Google Map </a> </strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="./รูป/ktc-cha-am-5.webp" alt="Desert" />
+          <div class="card__content">
+            <h1 class="card__header">พระนครคีรี</h1>
+            <p class="card__text">
+            </p>เวลาทำการ : 08.30 –16.30 น.<p> ที่อยู่ : 97 ถนน คีรีรัถยา ตำบล คลองกระแซง อำเภอเมืองเพชรบุรี เพชรบุรี 76000</p><strong>ระยะทาง 15 กิโลเมตร</strong></p><a href="https://maps.app.goo.gl/n2iwSLwHUZbGZyyi7">Google Map </a> </strong>
+            </p>
+          </div>
+        </div>
+
+
+        <div class="card">
+          <img src="./รูป/ktc-8-cha-am.webp" alt="Canyons" />
+          <div class="card__content">
+            <h1 class="card__header">ตลาดโต้รุ่งหัวหิน</h1>
+            <p class="card__text">
+            </p>เวลาทำการ : 17.00 - 23.00 น.<p> ที่อยู่ : ตำบลหาดเจ้าสำราญ อำเภอเมืองเพชรบุรี จังหวัดเพชรบุรี </p><strong>ระยะทาง 16 กิโลเมตร</strong></p><a href="https://maps.app.goo.gl/19cnwYkdTgQ1jmCh8">Google Map </a> </strong>
+            </p>
+          </div>
+        </div>
+      </div>
+      <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <script>
+      let currentIndex = 0;
+
+      function showSlides() {
+        const grid = document.querySelector('.grid');
+        const cardWidth = document.querySelector('.card').offsetWidth + 20; // including margin
+        const offset = -currentIndex * cardWidth;
+        grid.style.transform = `translateX(${offset}px)`;
+      }
+
+      function nextSlide() {
+        const totalCards = document.querySelectorAll('.card').length;
+        if (currentIndex < totalCards - 3) {
+          currentIndex++;
+          showSlides();
+        }
+      }
+
+      function prevSlide() {
+        if (currentIndex > 0) {
+          currentIndex--;
+          showSlides();
+        }
+      }
+
+      // Initialize the slider
+      showSlides();
+    </script>
+  </body>
+</html>
